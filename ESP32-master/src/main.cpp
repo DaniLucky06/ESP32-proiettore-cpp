@@ -7,9 +7,9 @@ const int SENSE_USB  = 4;
 const int RELAY_MAIN = 5; 
 
 // Timer
-const unsigned long GRACE_PERIOD_MS   = 1000;
-const unsigned long PRE_COOLING_PERIOD_MS = 1000;
-const unsigned long COOLING_PERIOD_MS = 5000;
+const unsigned long GRACE_PERIOD_MS   = 60000;
+const unsigned long PRE_COOLING_PERIOD_MS = 5000;
+const unsigned long COOLING_PERIOD_MS = 55000;
 
 enum ScreenCommand { CMD_STOP = 0, CMD_DOWN = 1, CMD_UP = 2 };
 enum SystemState { STANDBY, PROJECTOR_ON, GRACE_PERIOD, PRE_COOLING, COOLING, SHUTDOWN };

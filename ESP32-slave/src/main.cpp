@@ -12,8 +12,8 @@ const int BTN_UP      = 10; // Pulsante fisico muro
 // --- PARAMETRI TEMPORALI ---
 const unsigned long BOOT_WAIT_MS    = 2000;  // Attesa avvio centralina 12V
 const unsigned long IMPULSE_MS      = 500;   // Durata pressione tasto relè
-const unsigned long INVERSION_DELAY = 1000;  // Pausa tra stop e inversione
-const unsigned long POWER_OFF_DELAY = 60000; // Timeout spegnimento (1 min)
+const unsigned long INVERSION_DELAY = 2000;  // Pausa tra stop e inversione
+const unsigned long POWER_OFF_DELAY = 45000; // Timeout spegnimento (1 min)
 
 // --- STATI E VARIABILI ---
 enum ScreenCommand { CMD_STOP = 0, CMD_DOWN = 1, CMD_UP = 2 };
@@ -32,6 +32,8 @@ void triggerRelay(int pin) {
 
 // --- LOGICA DI MOVIMENTO (La "Mente" dello Slave) ---
 void executeMovement(ScreenCommand cmd) {
+    powerStartedAt = millis(); // Reset timer
+
     if (cmd == CMD_STOP) {
         digitalWrite(RELAY_POWER, LOW);
         isPowerOn = false;
@@ -51,7 +53,7 @@ void executeMovement(ScreenCommand cmd) {
     // Inversione (Se in direzione opposta, stoppa il telo, aspetta INVERSION_DELAY, e poi il comando lo attiva giusto)
     if (lastDirection != CMD_STOP && lastDirection != cmd) {
         Serial.println("[Logic] Rilevata inversione: invio impulso di STOP...");
-        int stopPin = (lastDirection == CMD_UP) ? RELAY_UP : RELAY_DOWN;
+        int stopPin = (lastDirection == CMD_UP) ? RELAY_DOWN : RELAY_UP;
         triggerRelay(stopPin);
         delay(INVERSION_DELAY);
     }
@@ -61,7 +63,6 @@ void executeMovement(ScreenCommand cmd) {
     triggerRelay(targetPin);
     
     lastDirection = cmd;
-    powerStartedAt = millis(); // Reset timer
     Serial.println("[System] Movimento avviato. Timer 60s partito.");
 }
 

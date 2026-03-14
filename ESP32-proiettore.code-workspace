@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "ESP32-master"
+		},
+		{
+			"path": "ESP32-slave"
+		}
+	],
+	"settings": {}
+}
