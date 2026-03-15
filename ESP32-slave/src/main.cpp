@@ -10,7 +10,7 @@ const int BTN_DOWN    = 7;  // Pulsante fisico muro
 const int BTN_UP      = 10; // Pulsante fisico muro
 
 // --- PARAMETRI TEMPORALI ---
-const unsigned long BOOT_WAIT_MS    = 2000;  // Attesa avvio centralina 12V
+const unsigned long BOOT_WAIT_MS    = 10000;  // Attesa avvio centralina 12V
 const unsigned long IMPULSE_MS      = 500;   // Durata pressione tasto relè
 const unsigned long INVERSION_DELAY = 2000;  // Pausa tra stop e inversione
 const unsigned long POWER_OFF_DELAY = 45000; // Timeout spegnimento (1 min)
