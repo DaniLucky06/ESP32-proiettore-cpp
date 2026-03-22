@@ -31,7 +31,6 @@ void setup() {
 
     pinMode(SENSE_USB, INPUT_PULLUP);
     pinMode(RELAY_MAIN, OUTPUT);
-    digitalWrite(RELAY_MAIN, HIGH); // 220V
 
     WiFi.mode(WIFI_STA); // init Wifi per EspNow
     if (esp_now_init() != ESP_OK) {
