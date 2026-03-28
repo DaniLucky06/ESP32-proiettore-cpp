@@ -19,7 +19,7 @@ unsigned long startTimeMillis = 0;
 int lastUsbStatus = -1;
 
 // Slave MAC
-uint8_t slaveAddress[] = {0xCC, 0x8D, 0xA2, 0xC0, 0x94, 0xFC}; 
+uint8_t slaveAddress[] = {0xA0, 0xF2, 0x62, 0xA7, 0x9C, 0x44};
 
 void sendCommand(ScreenCommand cmd) {
     Serial.printf(">>> Invio comando radio: %d\n", cmd);
